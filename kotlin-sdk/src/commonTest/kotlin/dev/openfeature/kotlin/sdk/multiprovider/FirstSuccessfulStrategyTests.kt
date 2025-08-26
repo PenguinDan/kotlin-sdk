@@ -6,12 +6,11 @@ import dev.openfeature.kotlin.sdk.exceptions.OpenFeatureError
 import dev.openfeature.kotlin.sdk.helpers.RecordingBooleanProvider
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 
 class FirstSuccessfulStrategyTests {
 
     @Test
-    fun returns_first_success_ignoring_prior_errors() {
+    fun returnsFirstSuccessIgnoringPriorErrors() {
         val strategy = FirstSuccessfulStrategy()
         val error1 = RecordingBooleanProvider("e1") {
             throw OpenFeatureError.GeneralError("boom1")
@@ -43,7 +42,7 @@ class FirstSuccessfulStrategyTests {
     }
 
     @Test
-    fun skips_flag_not_found_error_and_result_until_success() {
+    fun skipsFlagNotFoundErrorAndResultUntilSuccess() {
         val strategy = FirstSuccessfulStrategy()
         val notFoundThrow = RecordingBooleanProvider("nf-throw") {
             throw OpenFeatureError.FlagNotFoundError("flag")
@@ -70,7 +69,7 @@ class FirstSuccessfulStrategyTests {
     }
 
     @Test
-    fun throws_when_no_provider_returns_success() {
+    fun returnsErrorWhenNoProviderReturnsSuccess() {
         val strategy = FirstSuccessfulStrategy()
         val error1 = RecordingBooleanProvider("e1") {
             throw OpenFeatureError.GeneralError("boom1")
@@ -81,16 +80,15 @@ class FirstSuccessfulStrategyTests {
         val notFound = RecordingBooleanProvider("nf") {
             dev.openfeature.kotlin.sdk.ProviderEvaluation(false, errorCode = ErrorCode.FLAG_NOT_FOUND)
         }
-
-        assertFailsWith<OpenFeatureError.GeneralError> {
-            strategy.evaluate(
-                listOf(error1, error2, notFound),
-                key = "flag",
-                defaultValue = false,
-                evaluationContext = null,
-                flagEval = FeatureProvider::getBooleanEvaluation
-            )
-        }
+        val result = strategy.evaluate(
+            listOf(error1, error2, notFound),
+            key = "flag",
+            defaultValue = false,
+            evaluationContext = null,
+            flagEval = FeatureProvider::getBooleanEvaluation
+        )
+        assertEquals(false, result.value)
+        assertEquals(ErrorCode.FLAG_NOT_FOUND, result.errorCode)
         assertEquals(1, error1.booleanEvalCalls)
         assertEquals(1, error2.booleanEvalCalls)
         assertEquals(1, notFound.booleanEvalCalls)
