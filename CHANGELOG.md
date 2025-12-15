@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3](https://github.com/PenguinDan/kotlin-sdk/compare/v0.1.2...v0.1.3) (2025-12-15)
+
+
+### 🐛 Bug Fixes
+
+* add packageGroup to nexusPublishing for Sonatype staging profile discovery ([e1f75cd](https://github.com/PenguinDan/kotlin-sdk/commit/e1f75cdd3dbedba58f98efdfca8d6883d2aa820d))
+* simplify group/version assignment to match upstream ([1ff0aa7](https://github.com/PenguinDan/kotlin-sdk/commit/1ff0aa7c5fc17770496c7f004a5257f7445c46db))
+
 ## [0.1.2](https://github.com/PenguinDan/kotlin-sdk/compare/v0.1.1...v0.1.2) (2025-12-15)
 
 
