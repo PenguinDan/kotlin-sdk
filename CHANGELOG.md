@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/PenguinDan/kotlin-sdk/compare/v0.1.3...v0.1.4) (2025-12-15)
+
+
+### ✨ New Features
+
+* add workflow_dispatch with force_release for debugging ([f623019](https://github.com/PenguinDan/kotlin-sdk/commit/f623019ad5f946d751885838d9e3c31276cd9a2c))
+
 ## [0.1.3](https://github.com/PenguinDan/kotlin-sdk/compare/v0.1.2...v0.1.3) (2025-12-15)
 
 
