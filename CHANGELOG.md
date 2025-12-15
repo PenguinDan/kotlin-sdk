@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2025-12-15)
+
+
+### ✨ New Features
+
+* reset version for fresh 0.1.0 release ([952176d](https://github.com/PenguinDan/kotlin-sdk/commit/952176dbbe321e1e6192af1f221bb879bfec4dc9))
+
 ## [0.7.0](https://github.com/open-feature/kotlin-sdk/compare/v0.6.2...v0.7.0) (2025-09-17)
 
 
