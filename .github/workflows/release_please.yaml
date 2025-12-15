@@ -38,7 +38,7 @@ jobs:
 
       - name: Configure GPG Key
         run: |
-          # Create GPG directory and configure for non-interactive use
+          # Create GPG directory and configure for non-interactive use on macOS
           mkdir -p ~/.gnupg
           chmod 700 ~/.gnupg
           echo "use-agent" >> ~/.gnupg/gpg.conf
@@ -85,4 +85,5 @@ jobs:
         run: ./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository --no-daemon --stacktrace
 
       - name: Clean up signing secrets
-        run: rm ~/.gradle/gradle.properties
+        run: |
+          rm -f ~/.gradle/gradle.properties
