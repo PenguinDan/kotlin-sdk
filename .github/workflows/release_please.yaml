@@ -2,6 +2,13 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      force_release:
+        description: 'Force run kotlin-release job (for debugging)'
+        required: false
+        type: boolean
+        default: false
 
 name: Run Release Please
 jobs:
@@ -32,7 +39,8 @@ jobs:
     # Run on macOS to ensure we can publish iOS/Mac targets AND Linux/Android targets (via cross-compilation).
     # This ensures a single consistent root module file is published.
     runs-on: macos-latest
-    if: ${{ needs.release-please.outputs.release_created }}
+    # Run if release was created OR if manually triggered with force_release
+    if: ${{ needs.release-please.outputs.release_created || inputs.force_release }}
     steps:
       - uses: actions/checkout@v6
 
