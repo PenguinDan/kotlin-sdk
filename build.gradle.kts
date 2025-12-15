@@ -25,6 +25,8 @@ group = overriddenGroup ?: project.extra["groupId"].toString()
 version = overriddenVersion ?: project.extra["version"].toString()
 
 nexusPublishing {
+    // Package group must match your verified namespace on Sonatype Central
+    packageGroup.set("io.github.penguindan")
     this.repositories {
         sonatype {
             nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
