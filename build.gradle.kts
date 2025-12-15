@@ -13,7 +13,7 @@ plugins {
 allprojects {
     extra["groupId"] = "io.github.penguindan"
 // x-release-please-start-version
-    ext["version"] = "0.7.0"
+    ext["version"] = "0.3.0"
 // x-release-please-end
 }
 
